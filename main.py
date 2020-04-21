@@ -218,7 +218,6 @@ if __name__ == "__main__":
             x2_all["qda"] = vals
         if args.rall or args.willibepromoted:
             # use all
-            print(x2_all)
             print_title("Regression of previous")
             model = q_model(x_all, y, n=3)
             vals = q_estimate(x2_all, model, n=3)
