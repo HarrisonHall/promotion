@@ -10,7 +10,7 @@ def c_model(x, y, n=2):
     means.fit(x)
     return means
 
-def c_apply(x, means) -> list:
+def c_apply(x, means, raw=False) -> list:
     v = means.fit_predict(x)
     num_ones = sum([1 if a==1 else 0 for a in v])
     num_zeros = sum([1 if a==0 else 0 for a in v])

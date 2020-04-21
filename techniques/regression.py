@@ -17,7 +17,9 @@ def lr_estimate(x : pd.DataFrame, y : list) -> list:
     vals = list(x.dot(y))
     return [0 if v < .5 else 1 for v in vals]
 
-def lr_apply(x, reg) -> list:
+def lr_apply(x, reg, raw = False) -> list:
     z = reg.predict(x)
     red = [a[0] for a in z]
+    if raw:
+        return red
     return [0 if v < .5 else 1 for v in red]
