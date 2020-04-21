@@ -13,6 +13,7 @@ from random import randint
 
 from techniques.tools import *
 from techniques.reading import *
+from techniques.writing import *
 from techniques.regression import *
 from techniques.quadratic import *
 from techniques.logistic import *
@@ -82,6 +83,11 @@ parser.add_argument(
     help="Do regression on all"
 )
 parser.add_argument(
+    "-W", "-w", "--analysis",
+    action="store_true",
+    help="Store real testing"
+)
+parser.add_argument(
     "-?", "--willibepromoted",
     action="store_true",
     help="Find out whether or not you'll be promoted"
@@ -119,6 +125,8 @@ if __name__ == "__main__":
         x, y = split_on(train_data, default_promotion)
         test_data = make_numeric(read_data(test_fname))
         x2, y2 = split_on(test_data, default_promotion)
+        if args.analysis:
+            x2 = make_numeric(read_data(write_fname))
         x_all = pd.DataFrame()
         x2_all = pd.DataFrame()
 
@@ -222,3 +230,6 @@ if __name__ == "__main__":
                     print("Promoted!")
                 else:
                     print("Better luck next year.")
+            if args.analysis:
+                x2["is_promoted"] = vals
+                write_csv(x2, input("Final filename >> "))
