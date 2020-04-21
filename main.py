@@ -142,7 +142,7 @@ if __name__ == "__main__":
             x2.at[l,"length_of_service"] = r
             field = input(
                 "Field (Analytics, Finance, HR, Legal, "
-                "Operations, HR, Procurement, "
+                "Operations, Procurement, "
                 "Sales & Marketing, Technology)\n>> "
             )
             x2.at[l,"Procurement"] = 0.0
@@ -218,6 +218,7 @@ if __name__ == "__main__":
             x2_all["qda"] = vals
         if args.rall or args.willibepromoted:
             # use all
+            print(x2_all)
             print_title("Regression of previous")
             model = q_model(x_all, y, n=3)
             vals = q_estimate(x2_all, model, n=3)
